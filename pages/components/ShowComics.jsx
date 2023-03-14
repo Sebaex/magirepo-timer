@@ -6,7 +6,7 @@ function ShowComics() {
     const [tlComic, setTLComic] = useState("")
 
     const getLastComic = async () => {
-        const res = await fetch("http://localhost:3000/api/lastComic")
+        const res = await fetch("http://localhost:3000/api/lastComic", {mode: 'no-cors'})
         const comicNumber = await res.json()
         setLastComic(comicNumber.lastComic)
     }
