@@ -30,7 +30,12 @@ function Countdown({ timezone, targetHour }) {
     const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
 
-    return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    if (days > 0) {
+      return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    }
+    else {
+      return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    }
   };
 
   return (

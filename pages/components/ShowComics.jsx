@@ -1,44 +1,56 @@
-import { Row, Tabs, Tab } from 'react-bootstrap'
-import { useState, createElement } from 'react'
+import { Tabs, Tab } from 'react-bootstrap'
+import { useState, useEffect, createElement } from 'react'
+import getLastComicNumber from './getLastComicNumber'
+import getLastEnComic from './getLastEnComic'
 
 function ShowComics() {
     const [lastComic, setLastComic] = useState("")
-    const [tlComic, setTLComic] = useState("")
+    const [enComicLink, setEnComicLink] = useState("")
 
-    const getLastComic = async () => {
-        const res = await fetch(window.location.href + "api/lastComic", {mode: 'no-cors'})
-        const comicNumber = await res.json()
-        setLastComic(comicNumber.lastComic)
-    }
-    getLastComic()
+    useEffect(() => {
+        getLastComicNumber()
+            .then(num => {
+                setLastComic(num)
+            })
+    });
+
+    useEffect(() => {
+        getLastEnComic()
+            .then(link => {
+                setEnComicLink(link)
+            })
+    });
+
 
     const jpComic = lastComic === "" ? "Waiting for comic" : createElement(
         "img",
-        {src: `https://magireco.com/images/comic2/image/${lastComic}.jpg`},
+        { src: `https://magireco.com/images/comic2/image/${lastComic}.jpg` },
         null
     );
-      
 
-    console.log(lastComic)
-    
+    const enComic = lastComic === "" ? "Waiting for comic" : createElement(
+        "img",
+        { src: `${enComicLink}` },
+        null
+    );
+
     return (
         <div>
-            <h1>For now, enjoy the actual comic</h1>
+            <h1>For now, enjoy the current comic</h1>
+
             <section className='col-6'>
-                <Row>
-                    <Tabs justify defaultActiveKey="tab-1" className="mb-1 p-0">
-                        <Tab eventKey="tab-1" title="Japanese">
-                            <p className="jpComic">
-                                {jpComic}
-                            </p>
-                        </Tab>
-                        <Tab eventKey="tab-2" title="English (Translated)">
-                            <p className="translatedComic">
-                                {tlComic}
-                            </p>
-                        </Tab>
-                    </Tabs>
-                </Row>
+                <Tabs justify defaultActiveKey="tab-1" className="mb-1 p-0">
+                    <Tab eventKey="tab-1" title="Japanese">
+                        <p className="jpComic">
+                            {jpComic}
+                        </p>
+                    </Tab>
+                    <Tab eventKey="tab-2" title="English (Translated)">
+                        <p className="translatedComic">
+                            {enComic}
+                        </p>
+                    </Tab>
+                </Tabs>
             </section>
         </div>
     )
