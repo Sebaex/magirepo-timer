@@ -1,0 +1,11 @@
+.comicPicture {
+    max-width: 100%;
+    width: 700px;
+    height: auto;
+    object-fit: cover;
+}
+.languageTab {
+    max-width: 100%;
+    width: 1000px;
+    margin: auto;
+}

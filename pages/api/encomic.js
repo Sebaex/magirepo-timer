@@ -1,8 +1,5 @@
-import { JSDOM } from 'jsdom'
-
 const enComic = async (req, res) => {
     var comicList = []
-    // Authenticate via OAuth
     var tumblr = require('tumblr.js');
     var client = tumblr.createClient({
         consumer_key: process.env.TUMBLR_CONSUMER_KEY,
@@ -11,7 +8,6 @@ const enComic = async (req, res) => {
         token_secret: process.env.TUMBLR_TOKEN_SECRET
     });
 
-    // Make the request
     client.blogPosts('tfoscans.tumblr.com', { type: 'photo', limit: 3 }, function (err, data) {        
         const posts = data.posts
         posts.forEach(post => {

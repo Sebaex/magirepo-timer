@@ -25,23 +25,27 @@ function Countdown({ timezone, targetHour }) {
   };
 
   const formatTimeRemaining = (timeRemaining) => {
-    const seconds = Math.floor((timeRemaining / 1000) % 60);
-    const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
-    const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const secondsCount = Math.floor((timeRemaining / 1000) % 60);
+    const minutesCount = Math.floor((timeRemaining / 1000 / 60) % 60);
+    const hoursCount = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+    const daysCount = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
 
-    if (days > 0) {
-      return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    const seconds = secondsCount === 1 ? `${secondsCount} second` : `${secondsCount} seconds` 
+    const minutes = minutesCount === 1 ? `${minutesCount} minute` : `${minutesCount} minutes` 
+    const hours = hoursCount === 1 ? `${hoursCount} hour` : `${hoursCount} hours` 
+    const days = daysCount === 1 ? `${daysCount} day` : `${daysCount} days` 
+
+    if (daysCount > 0) {
+      return `${days}, ${hours}, ${minutes}, ${seconds}`;
     }
     else {
-      return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+      return `${hours}, ${minutes}, ${seconds}`;
     }
   };
 
   return (
-    <div>
-      <h3>Time remaining until next comic:</h3>
-      <p>{formatTimeRemaining(timeRemaining)}</p>
+    <div className="mb-5">
+      <h3>Time remaining until next comic: {formatTimeRemaining(timeRemaining)}</h3>
     </div>
   );
 }
