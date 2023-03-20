@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "Comic Sans MS";
-  src: url(../public/sans.TTF);
+  font-family: 'Baloo Bhaijaan 2';
+  src: url(../public/Baloo.ttf);
 }
 
 .App{
-  font-family: "Comic Sans MS";
+  font-family: 'Baloo Bhaijaan 2';
 }

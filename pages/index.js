@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <section className="text-center">
-        <h1 className={`${styles.pageTitle}`}><strong>Magia Report Comic Timer</strong></h1>
+        <h1 className={`${styles.pageTitle} mt-4`}><strong>Magia Report Comic Timer</strong></h1>
         <Countdown timezone="Asia/Tokyo" targetHour={17} />
         <ShowComics></ShowComics>
       </section>

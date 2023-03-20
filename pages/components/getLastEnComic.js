@@ -1,5 +1,5 @@
 async function getLastEnComic() {
-    const res = await fetch(window.location.href + `api/encomic/`)
+    const res = await fetch(`api/encomic/`)
         const enComicLink = await res.json()
         return enComicLink.comicLink
 }

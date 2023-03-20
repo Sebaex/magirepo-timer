@@ -45,7 +45,8 @@ function Countdown({ timezone, targetHour }) {
 
   return (
     <div className="mb-5">
-      <h3>Time remaining until next comic: {formatTimeRemaining(timeRemaining)}</h3>
+      <h1>Time remaining until next comic:</h1>
+      <span className="h3">{formatTimeRemaining(timeRemaining)}</span>
     </div>
   );
 }
