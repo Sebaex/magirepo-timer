@@ -1,7 +1,6 @@
 import { Tabs, Tab } from 'react-bootstrap'
 import { useState, useEffect, createElement } from 'react'
-import getLastComicNumber from './getLastComicNumber'
-import getLastEnComic from './getLastEnComic'
+import getLastComicData from './getLastComicData'
 import styles from '@/styles/ShowComics.module.css'
 
 function ShowComics() {
@@ -10,20 +9,13 @@ function ShowComics() {
     const [enComicLink, setEnComicLink] = useState("")
 
     useEffect(() => {
-        getLastComicNumber()
-            .then(num => {
-                setLastComic(num)
+        getLastComicData()
+            .then(data => {
+                setEnComicLink(data.enComicLink)
+                setLastComic(data.lastComic)
+                setLastEnComic(data.lastEnComic)
             })
     });
-
-    useEffect(() => {
-        getLastEnComic()
-            .then(link => {
-                setEnComicLink(link.comicLink)
-                setLastEnComic(link.lastEnComic)
-            })
-    });
-
 
     const jpComic = lastComic === "" ? <h1>Waiting for comic...</h1> : createElement(
         "img",
