@@ -10,6 +10,7 @@ const enComic = async (req, res) => {
 
     client.blogPosts('tfoscans.tumblr.com', { type: 'photo', limit: 3 }, function (err, data) {        
         const posts = data.posts
+        const lastEnComic = posts[0].summary.substring(16,19)
         posts.forEach(post => {
             if(post.summary.includes("Magia Report")){
                 const comicPhotos = post.photos
@@ -19,7 +20,7 @@ const enComic = async (req, res) => {
             }
         });
         const comicLink = comicList[0]
-        return res.status(200).json({ comicLink })
+        return res.status(200).json({ comicLink, lastEnComic })
     });
 }
 export default enComic

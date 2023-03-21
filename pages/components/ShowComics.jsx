@@ -6,6 +6,7 @@ import styles from '../../styles/ShowComics.module.css'
 
 function ShowComics() {
     const [lastComic, setLastComic] = useState("")
+    const [lastEnComic, setLastEnComic] = useState("")
     const [enComicLink, setEnComicLink] = useState("")
 
     useEffect(() => {
@@ -18,7 +19,8 @@ function ShowComics() {
     useEffect(() => {
         getLastEnComic()
             .then(link => {
-                setEnComicLink(link)
+                setEnComicLink(link.comicLink)
+                setLastEnComic(link.lastEnComic)
             })
     });
 
@@ -40,10 +42,10 @@ function ShowComics() {
             <section className='container'>
             <h1>For now, enjoy the current comic</h1>
                 <Tabs justify defaultActiveKey="tab-1" className={`${styles.languageTab}`}>
-                    <Tab eventKey="tab-1" title="Japanese">
+                    <Tab eventKey="tab-1" title={`Japanese (#${lastComic})`}>
                         {jpComic}
                     </Tab>
-                    <Tab eventKey="tab-2" title="English (Translated)">
+                    <Tab eventKey="tab-2" title={`English Translated (#${lastEnComic})`}>
                         {enComic}
                     </Tab>
                 </Tabs>
