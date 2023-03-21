@@ -1,5 +1,5 @@
 async function getLastEnComic() {
-    const res = await fetch(`api/encomic/`)
+    const res = await fetch("/api/encomic/")
         const enComicData = await res.json()
         return enComicData
 }

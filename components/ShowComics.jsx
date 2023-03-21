@@ -2,7 +2,7 @@ import { Tabs, Tab } from 'react-bootstrap'
 import { useState, useEffect, createElement } from 'react'
 import getLastComicNumber from './getLastComicNumber'
 import getLastEnComic from './getLastEnComic'
-import styles from '../../styles/ShowComics.module.css'
+import styles from '@/styles/ShowComics.module.css'
 
 function ShowComics() {
     const [lastComic, setLastComic] = useState("")

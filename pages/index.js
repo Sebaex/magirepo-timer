@@ -1,5 +1,5 @@
-import Countdown from "./components/Timer"
-import ShowComics from "./components/ShowComics"
+import Countdown from "@/components/Timer"
+import ShowComics from "@/components/ShowComics"
 import styles from '../styles/index.module.css'
 
 export default function Home() {
