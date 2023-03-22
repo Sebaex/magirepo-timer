@@ -23,8 +23,8 @@ function Countdown({ timezone, targetHour }) {
       .set('hour', targetHour)
       .set('minute', 0)
       .set('second', 0)
-    setJpLaunchTime(targetDate.format("HH:mm UTC Z"))
-    setLocalLaunchTime(targetDate.local().format("HH:mm UTC Z"))
+    setJpLaunchTime(targetDate.format("DD/MM HH:mm UTC Z"))
+    setLocalLaunchTime(targetDate.local().format("DD/MM HH:mm UTC Z"))
     if (targetDate < now) {
       targetDate.add(7, 'days');
     }
@@ -58,7 +58,7 @@ function Countdown({ timezone, targetHour }) {
     <div className="mb-5">
       <h1>Time remaining until next comic:</h1>
       <span className="h3">{formatTimeRemaining(timeRemaining)}</span>
-      <h2 className="mt-4">Time launched at:</h2>
+      <h2 className="mt-4">New comic available at:</h2>
       <div className="col h4">Japan: {jpLaunchTime}</div>
       <div className="col h4">Your local time: {localLaunchTime}</div>
     </div>
