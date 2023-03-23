@@ -37,21 +37,25 @@ function Countdown({ timezone, targetHour }) {
     const hoursCount = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
     const daysCount = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
 
-    const seconds = secondsCount === 1 ? `${secondsCount} second` : `${secondsCount} seconds`
-    const minutes = minutesCount === 1 ? `${minutesCount} minute` : `${minutesCount} minutes`
-    const hours = hoursCount === 1 ? `${hoursCount} hour` : `${hoursCount} hours`
-    const days = daysCount === 1 ? `${daysCount} day` : `${daysCount} days`
+    if(timeRemaining == 0){
+      return "Now"
+    }
 
-    if (minutesCount == 0) {
-      return `${seconds}`;
-    }
-    if (hoursCount == 0) {
-      return `${minutes}, ${seconds}`;
-    }
-    if (daysCount == 0) {
-      return `${hours}, ${minutes}, ${seconds}`;
-    }
-    return `${days}, ${hours}, ${minutes}, ${seconds}`;
+    const timeValues = [
+      { value: daysCount, singular: 'day', plural: 'days' },
+      { value: hoursCount, singular: 'hour', plural: 'hours' },
+      { value: minutesCount, singular: 'minute', plural: 'minutes' },
+      { value: secondsCount, singular: 'second', plural: 'seconds' },
+    ];
+    
+    const timeStrings = timeValues
+      .filter(({ value }) => value !== 0)
+      .map(({ value, singular, plural }) => {
+        const timeString = value === 1 ? singular : plural;
+        return `${value} ${timeString}`;
+      });
+    
+    return timeStrings.join(', ');
   };
 
   return (
