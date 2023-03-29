@@ -23,11 +23,12 @@ function Countdown({ timezone, targetHour }) {
       .set('hour', targetHour)
       .set('minute', 0)
       .set('second', 0)
-    setJpLaunchTime(targetDate.format("DD/MM HH:mm UTC Z"))
-    setLocalLaunchTime(targetDate.local().format("DD/MM HH:mm UTC Z"))
+
     if (targetDate < now) {
       targetDate.add(7, 'days');
     }
+    setJpLaunchTime(targetDate.format("DD/MM HH:mm UTC Z"))
+    setLocalLaunchTime(targetDate.local().format("DD/MM HH:mm UTC Z"))
     return targetDate.toDate();
   };
 
@@ -54,7 +55,7 @@ function Countdown({ timezone, targetHour }) {
         const timeString = value === 1 ? singular : plural;
         return `${value} ${timeString}`;
       });
-    
+
     return timeStrings.join(', ');
   };
 
